@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book Catalog Management - Library Management System</title>
+    <title>Manajemen Katalog Buku - Sistem Manajemen Perpustakaan</title>
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,18 +23,18 @@
                         </svg>
                     </div>
                     <div>
-                        <h1 class="text-xl font-heading font-semibold text-text-primary">Library Management</h1>
-                        <p class="text-sm text-text-secondary">Book Catalog Management</p>
+                        <h1 class="text-xl font-heading font-semibold text-text-primary">Manajemen Perpustakaan</h1>
+                        <p class="text-sm text-text-secondary">Manajemen Katalog Buku</p>
                     </div>
                 </div>
             </div>
 
             <!-- Navigation -->
             <nav class="hidden md:flex items-center space-x-6">
-                <a href="admin_dashboard.html" class="text-text-secondary hover:text-primary-600 font-medium transition-colors">Dashboard</a>
-                <a href="book_catalog_management.html" class="text-primary-600 font-medium">Books</a>
-                <a href="member_account_management.html" class="text-text-secondary hover:text-primary-600 font-medium transition-colors">Members</a>
-                <a href="loan_request_processing.html" class="text-text-secondary hover:text-primary-600 font-medium transition-colors">Loans</a>
+                <a href="admin_dashboard.html" class="text-text-secondary hover:text-primary-600 font-medium transition-colors">Dasbor</a>
+                <a href="book_catalog_management.html" class="text-primary-600 font-medium">Buku</a>
+                <a href="member_account_management.html" class="text-text-secondary hover:text-primary-600 font-medium transition-colors">Anggota</a>
+                <a href="loan_request_processing.html" class="text-text-secondary hover:text-primary-600 font-medium transition-colors">Peminjaman</a>
             </nav>
 
             <!-- User Menu -->
@@ -49,11 +49,11 @@
                 </div>
                 <div class="flex items-center space-x-3">
                     <div class="text-right">
-                        <p class="text-sm font-medium text-text-primary">Library Administrator</p>
+                        <p class="text-sm font-medium text-text-primary">Administrator Perpustakaan</p>
                         <p class="text-xs text-text-secondary">admin@library.com</p>
                     </div>
                     <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
-                        <span class="text-sm font-medium text-primary-600">LA</span>
+                        <span class="text-sm font-medium text-primary-600">AP</span>
                     </div>
                     <button id="logoutBtn" class="text-text-secondary hover:text-error-600 transition-colors">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -73,9 +73,9 @@
         <div class="space-y-6">
             <!-- Search -->
             <div>
-                <label class="block text-sm font-medium text-text-primary mb-2">Search Books</label>
+                <label class="block text-sm font-medium text-text-primary mb-2">Cari Buku</label>
                 <div class="relative">
-                    <input type="text" id="searchInput" class="input-field pl-10 pr-10" placeholder="Search by title, author, ISBN..." />
+                    <input type="text" id="searchInput" class="input-field pl-10 pr-10" placeholder="Cari berdasarkan judul, penulis, ISBN..." />
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <svg class="w-4 h-4 text-secondary-400" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
@@ -88,75 +88,6 @@
                     </button>
                 </div>
             </div>
-
-            <!-- Category Filter -->
-            <div>
-                <label class="block text-sm font-medium text-text-primary mb-2">Category</label>
-                <select id="categoryFilter" class="input-field">
-                    <option value>All Categories</option>
-                    <option value="fiction">Fiction (245)</option>
-                    <option value="non-fiction">Non-Fiction (189)</option>
-                    <option value="science">Science (156)</option>
-                    <option value="technology">Technology (134)</option>
-                    <option value="history">History (98)</option>
-                    <option value="biography">Biography (76)</option>
-                    <option value="children">Children's Books (203)</option>
-                    <option value="reference">Reference (45)</option>
-                </select>
-            </div>
-
-            <!-- Author Filter -->
-            <div>
-                <label class="block text-sm font-medium text-text-primary mb-2">Author</label>
-                <input type="text" id="authorFilter" class="input-field" placeholder="Filter by author name" />
-            </div>
-
-            <!-- Availability Status -->
-            <div>
-                <label class="block text-sm font-medium text-text-primary mb-3">Availability Status</label>
-                <div class="space-y-2">
-                    <label class="flex items-center">
-                        <input type="checkbox" id="availableFilter" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-secondary-300 rounded" checked />
-                        <span class="ml-2 text-sm text-text-secondary">Available (892)</span>
-                    </label>
-                    <label class="flex items-center">
-                        <input type="checkbox" id="checkedOutFilter" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-secondary-300 rounded" checked />
-                        <span class="ml-2 text-sm text-text-secondary">Checked Out (254)</span>
-                    </label>
-                    <label class="flex items-center">
-                        <input type="checkbox" id="reservedFilter" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-secondary-300 rounded" checked />
-                        <span class="ml-2 text-sm text-text-secondary">Reserved (67)</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Publication Date -->
-            <div>
-                <label class="block text-sm font-medium text-text-primary mb-2">Publication Date Range</label>
-                <div class="grid grid-cols-2 gap-2">
-                    <input type="number" id="yearFrom" class="input-field" placeholder="From" min="1900" max="2025" />
-                    <input type="number" id="yearTo" class="input-field" placeholder="To" min="1900" max="2025" />
-                </div>
-            </div>
-
-            <!-- Filter Actions -->
-            <div class="flex space-x-2">
-                <button id="applyFilters" class="flex-1 btn-primary text-sm">
-                    Apply Filters
-                </button>
-                <button id="resetFilters" class="px-3 py-2 text-secondary-600 hover:text-secondary-700 border border-secondary-300 rounded-md transition-colors">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Results Count -->
-            <div class="text-center p-3 bg-primary-50 rounded-md">
-                <p class="text-sm text-primary-700">
-                    <span id="resultsCount" class="font-medium">1,146</span> books found
-                </p>
-            </div>
         </div>
     </aside>
 
@@ -165,21 +96,21 @@
         <!-- Header Actions -->
         <div class="flex items-center justify-between mb-6">
             <div>
-                <h2 class="text-2xl font-heading font-semibold text-text-primary">Book Catalog</h2>
-                <p class="text-text-secondary mt-1">Manage your library's book inventory</p>
+                <h2 class="text-2xl font-heading font-semibold text-text-primary">Katalog Buku</h2>
+                <p class="text-text-secondary mt-1">Kelola inventaris buku perpustakaan Anda</p>
             </div>
             <div class="flex items-center space-x-3">
                 <button id="exportBtn" class="btn-secondary flex items-center space-x-2">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
                     </svg>
-                    <span>Export</span>
+                    <span>Ekspor</span>
                 </button>
                 <button id="addBookBtn" class="btn-primary flex items-center space-x-2">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/>
                     </svg>
-                    <span>Add New Book</span>
+                    <span>Tambah Buku Baru</span>
                 </button>
             </div>
         </div>
@@ -188,21 +119,21 @@
         <div id="bulkActionsBar" class="hidden bg-accent-50 border border-accent-200 rounded-lg p-4 mb-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4">
-                        <span class="text-sm font-medium text-accent-700">
-                            <span id="selectedCount">0</span> books selected
-                        </span>
+                    <span class="text-sm font-medium text-accent-700">
+                        <span id="selectedCount">0</span> buku dipilih
+                    </span>
                     <div class="flex items-center space-x-2">
                         <select id="bulkAction" class="text-sm border border-accent-300 rounded px-2 py-1">
-                            <option value>Choose action...</option>
-                            <option value="delete">Delete Selected</option>
-                            <option value="category">Update Category</option>
-                            <option value="export">Export Selected</option>
+                            <option value>Pilih tindakan...</option>
+                            <option value="delete">Hapus Yang Dipilih</option>
+                            <option value="category">Perbarui Kategori</option>
+                            <option value="export">Ekspor Yang Dipilih</option>
                         </select>
-                        <button id="executeBulkAction" class="btn-primary text-sm px-3 py-1">Execute</button>
+                        <button id="executeBulkAction" class="btn-primary text-sm px-3 py-1">Laksanakan</button>
                     </div>
                 </div>
                 <button id="clearSelection" class="text-accent-600 hover:text-accent-700 text-sm font-medium">
-                    Clear Selection
+                    Hapus Pilihan
                 </button>
             </div>
         </div>
@@ -215,12 +146,12 @@
                     <div class="flex items-center space-x-4">
                         <label class="flex items-center">
                             <input type="checkbox" id="selectAll" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-secondary-300 rounded" />
-                            <span class="ml-2 text-sm text-text-secondary">Select All</span>
+                            <span class="ml-2 text-sm text-text-secondary">Pilih Semua</span>
                         </label>
                     </div>
                     <div class="flex items-center space-x-4">
                         <div class="flex items-center space-x-2">
-                            <span class="text-sm text-text-secondary">Show:</span>
+                            <span class="text-sm text-text-secondary">Tampilkan:</span>
                             <select id="pageSize" class="text-sm border border-secondary-300 rounded px-2 py-1">
                                 <option value="10">10</option>
                                 <option value="25" selected>25</option>
@@ -240,10 +171,10 @@
                         <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider w-12">
                             <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-secondary-300 rounded" />
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider w-20">Cover</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider cursor-pointer hover:text-primary-600" data-sort="title">
+                        <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider w-20">Sampul</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary-uppercase tracking-wider cursor-pointer hover:text-primary-600" data-sort="title">
                             <div class="flex items-center space-x-1">
-                                <span>Title</span>
+                                <span>Judul</span>
                                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M5 12a1 1 0 102 0V6.414l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L5 6.414V12zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z"/>
                                 </svg>
@@ -251,24 +182,24 @@
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider cursor-pointer hover:text-primary-600" data-sort="author">
                             <div class="flex items-center space-x-1">
-                                <span>Author</span>
+                                <span>Penulis</span>
                                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M5 12a1 1 0 102 0V6.414l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L5 6.414V12zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z"/>
                                 </svg>
                             </div>
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">ISBN</th>
+                        <th class="px-6 py3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">ISBN</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider cursor-pointer hover:text-primary-600" data-sort="category">
                             <div class="flex items-center space-x-1">
-                                <span>Category</span>
+                                <span>Kategori</span>
                                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M5 12a1 1 0 102 0V6.414l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L5 6.414V12zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z"/>
                                 </svg>
                             </div>
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Copies</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Jumlah Salinan</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Status</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Actions</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Tindakan</th>
                     </tr>
                     </thead>
                     <tbody id="booksTableBody" class="bg-surface divide-y divide-secondary-200">
@@ -279,19 +210,19 @@
 
             <!-- Pagination -->
             <div class="px-6 py-4 border-t border-secondary-200 bg-secondary-50">
-                <div class="flex items-center justify-between">
+                <div classერ� class="flex items-center justify-between">
                     <div class="text-sm text-text-secondary">
-                        Showing <span id="showingFrom">1</span> to <span id="showingTo">25</span> of <span id="totalBooks">1,146</span> books
+                        Menampilkan <span id="showingFrom">1</span> hingga <span id="showingTo">25</span>
                     </div>
                     <div class="flex items-center space-x-2">
                         <button id="prevPage" class="px-3 py-1 text-sm border border-secondary-300 rounded hover:bg-secondary-100 transition-colors" disabled>
-                            Previous
+                            Sebelumnya
                         </button>
                         <div id="pageNumbers" class="flex items-center space-x-1">
                             <!-- Page numbers will be populated by JavaScript -->
                         </div>
                         <button id="nextPage" class="px-3 py-1 text-sm border border-secondary-300 rounded hover:bg-secondary-100 transition-colors">
-                            Next
+                            Berikutnya
                         </button>
                     </div>
                 </div>
@@ -305,7 +236,7 @@
     <div class="bg-surface rounded-xl shadow-large max-w-4xl w-full max-h-screen overflow-y-auto">
         <div class="p-6 border-b border-secondary-200">
             <div class="flex items-center justify-between">
-                <h3 class="text-xl font-heading font-semibold text-text-primary">Add New Book</h3>
+                <h3 class="text-xl font-heading font-semibold text-text-primary">Tambah Buku Baru</h3>
                 <button id="closeAddModal" class="text-secondary-400 hover:text-secondary-600 transition-colors">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
@@ -318,11 +249,11 @@
                 <!-- Left Column -->
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-sm font-medium text-text-primary mb-2">Book Title *</label>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Judul Buku *</label>
                         <input type="text" id="bookTitle" class="input-field" required />
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-text-primary mb-2">Author *</label>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Penulis *</label>
                         <input type="text" id="bookAuthor" class="input-field" required />
                     </div>
                     <div>
@@ -330,25 +261,25 @@
                         <input type="text" id="bookISBN" class="input-field" required />
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-text-primary mb-2">Category *</label>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Kategori *</label>
                         <select id="bookCategory" class="input-field" required>
-                            <option value>Select Category</option>
-                            <option value="fiction">Fiction</option>
-                            <option value="non-fiction">Non-Fiction</option>
-                            <option value="science">Science</option>
-                            <option value="technology">Technology</option>
-                            <option value="history">History</option>
-                            <option value="biography">Biography</option>
-                            <option value="children">Children's Books</option>
-                            <option value="reference">Reference</option>
+                            <option value>Pilih Kategori</option>
+                            <option value="fiction">Fiksi</option>
+                            <option value="non-fiction">Non-Fiksi</option>
+                            <option value="science">Sains</option>
+                            <option value="technology">Teknologi</option>
+                            <option value="history">Sejarah</option>
+                            <option value="biography">Biografi</option>
+                            <option value="children">Buku Anak-anak</option>
+                            <option value="reference">Referensi</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-text-primary mb-2">Publication Year</label>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Tahun Terbit</label>
                         <input type="number" id="publicationYear" class="input-field" min="1900" max="2025" />
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-text-primary mb-2">Publisher</label>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Penerbit</label>
                         <input type="text" id="publisher" class="input-field" />
                     </div>
                 </div>
@@ -356,49 +287,49 @@
                 <!-- Right Column -->
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-sm font-medium text-text-primary mb-2">Book Cover</label>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Sampul Buku</label>
                         <div class="border-2 border-dashed border-secondary-300 rounded-lg p-6 text-center">
                             <input type="file" id="bookCover" accept="image/*" class="hidden" />
                             <div id="coverPreview" class="hidden">
-                                <img id="coverImage" class="mx-auto h-32 w-24 object-cover rounded" />
-                                <button type="button" id="removeCover" class="mt-2 text-sm text-error-600 hover:text-error-700">Remove</button>
+                                <img id="coverImage" class="mx-auto h-24 w-24 object-cover rounded" />
+                                <button type="button" id="removeCover" class="mt-2 text-sm text-error-600 hover:text-error-700">Hapus</button>
                             </div>
                             <div id="coverUpload">
                                 <svg class="mx-auto h-12 w-12 text-secondary-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
                                     <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                                 <p class="mt-2 text-sm text-secondary-600">
-                                    <button type="button" class="font-medium text-primary-600 hover:text-primary-500">Upload a cover</button>
-                                    or drag and drop
+                                    <button type="button" class="font-medium text-primary-600 hover:text-primary-500">Unggah sampul</button>
+                                    atau seret dan lepas
                                 </p>
-                                <p class="text-xs text-secondary-500">PNG, JPG, GIF up to 10MB</p>
+                                <p class="text-xs text-secondary-500">PNG, JPG, GIF hingga 10MB</p>
                             </div>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-text-primary mb-2">Total Copies *</label>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Total Salinan *</label>
                             <input type="number" id="totalCopies" class="input-field" min="1" required />
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-text-primary mb-2">Available Copies</label>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Salinan Tersedia</label>
                             <input type="number" id="availableCopies" class="input-field" min="0" readonly />
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-text-primary mb-2">Description</label>
-                        <textarea id="bookDescription" class="input-field" rows="4" placeholder="Brief description of the book..."></textarea>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Deskripsi</label>
+                        <textarea id="bookDescription" class="input-field" rows="4" placeholder="Deskripsi singkat tentang buku..."></textarea>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-text-primary mb-2">Location/Shelf</label>
-                        <input type="text" id="bookLocation" class="input-field" placeholder="e.g., A-1-15" />
+                        <label class="block text-sm font-medium text-text-primary mb-2">Lokasi/Rak</label>
+                        <input type="text" id="bookLocation" class="input-field" placeholder="misalnya, A-1-15" />
                     </div>
                 </div>
             </div>
 
             <div class="flex justify-end space-x-3 mt-6 pt-6 border-t border-secondary-200">
-                <button type="button" id="cancelAdd" class="btn-secondary">Cancel</button>
-                <button type="submit" class="btn-primary">Add Book</button>
+                <button type="button" id="cancelAdd" class="btn-secondary">Batal</button>
+                <button type="submit" class="btn-primary">Tambah Buku</button>
             </div>
         </form>
     </div>
@@ -409,7 +340,7 @@
     <div class="bg-surface rounded-xl shadow-large max-w-4xl w-full max-h-screen overflow-y-auto">
         <div class="p-6 border-b border-secondary-200">
             <div class="flex items-center justify-between">
-                <h3 class="text-xl font-heading font-semibold text-text-primary">Edit Book</h3>
+                <h3 class="text-xl font-heading font-semibold text-text-primary">Edit Buku</h3>
                 <button id="closeEditModal" class="text-secondary-400 hover:text-secondary-600 transition-colors">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
@@ -420,8 +351,8 @@
         <form id="editBookForm" class="p-6">
             <!-- Similar form structure as add book modal -->
             <div class="flex justify-end space-x-3 mt-6 pt-6 border-t border-secondary-200">
-                <button type="button" id="cancelEdit" class="btn-secondary">Cancel</button>
-                <button type="submit" class="btn-primary">Update Book</button>
+                <button type="button" id="cancelEdit" class="btn-secondary">Batal</button>
+                <button type="submit" class="btn-primary">Perbarui Buku</button>
             </div>
         </form>
     </div>
@@ -432,7 +363,7 @@
     <div class="bg-surface rounded-xl shadow-large max-w-2xl w-full max-h-screen overflow-y-auto">
         <div class="p-6 border-b border-secondary-200">
             <div class="flex items-center justify-between">
-                <h3 class="text-xl font-heading font-semibold text-text-primary">Book Details</h3>
+                <h3 class="text-xl font-heading font-semibold text-text-primary">Detail Buku</h3>
                 <button id="closeDetailsModal" class="text-secondary-400 hover:text-secondary-600 transition-colors">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
@@ -445,569 +376,94 @@
         </div>
     </div>
 </div>
-
-<!-- JavaScript -->
 <script>
-    // Mock book data
-    const mockBooks = [
-        {
-            id: 1,
-            title: "The Great Gatsby",
-            author: "F. Scott Fitzgerald",
-            isbn: "978-0-7432-7356-5",
-            category: "fiction",
-            publicationYear: 1925,
-            publisher: "Scribner",
-            totalCopies: 5,
-            availableCopies: 3,
-            status: "available",
-            location: "A-1-15",
-            description: "A classic American novel set in the Jazz Age.",
-            cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&auto=format&fit=crop"
-        },
-        {
-            id: 2,
-            title: "To Kill a Mockingbird",
-            author: "Harper Lee",
-            isbn: "978-0-06-112008-4",
-            category: "fiction",
-            publicationYear: 1960,
-            publisher: "J.B. Lippincott & Co.",
-            totalCopies: 4,
-            availableCopies: 2,
-            status: "available",
-            location: "A-1-16",
-            description: "A gripping tale of racial injustice and childhood innocence.",
-            cover: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=400&auto=format&fit=crop"
-        },
-        {
-            id: 3,
-            title: "1984",
-            author: "George Orwell",
-            isbn: "978-0-452-28423-4",
-            category: "fiction",
-            publicationYear: 1949,
-            publisher: "Secker & Warburg",
-            totalCopies: 6,
-            availableCopies: 0,
-            status: "checked-out",
-            location: "A-1-17",
-            description: "A dystopian social science fiction novel.",
-            cover: "https://images.unsplash.com/photo-1495640388908-05fa85288e61?q=80&w=400&auto=format&fit=crop"
-        },
-        {
-            id: 4,
-            title: "The Catcher in the Rye",
-            author: "J.D. Salinger",
-            isbn: "978-0-316-76948-0",
-            category: "fiction",
-            publicationYear: 1951,
-            publisher: "Little, Brown and Company",
-            totalCopies: 3,
-            availableCopies: 1,
-            status: "reserved",
-            location: "A-1-18",
-            description: "A controversial novel about teenage rebellion.",
-            cover: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop"
-        },
-        {
-            id: 5,
-            title: "A Brief History of Time",
-            author: "Stephen Hawking",
-            isbn: "978-0-553-38016-3",
-            category: "science",
-            publicationYear: 1988,
-            publisher: "Bantam Books",
-            totalCopies: 4,
-            availableCopies: 4,
-            status: "available",
-            location: "S-2-05",
-            description: "A landmark volume in science writing by one of the great minds of our time.",
-            cover: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?q=80&w=400&auto=format&fit=crop"
+    // Event listener untuk form tambah buku
+    document.getElementById('addBookForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        // Ambil data dari form
+        const formData = new FormData();
+        formData.append('title', document.getElementById('bookTitle').value);
+        formData.append('author', document.getElementById('bookAuthor').value);
+        formData.append('isbn', document.getElementById('bookISBN').value);
+        formData.append('category', document.getElementById('bookCategory').value);
+        formData.append('publicationYear', document.getElementById('publicationYear').value || '');
+        formData.append('publisher', document.getElementById('publisher').value || '');
+        formData.append('totalCopies', document.getElementById('totalCopies').value);
+        formData.append('availableCopies', document.getElementById('availableCopies').value || document.getElementById('totalCopies').value);
+        formData.append('description', document.getElementById('bookDescription').value || '');
+        formData.append('location', document.getElementById('bookLocation').value || '');
+
+        // Tambahkan file sampul jika ada
+        const coverFile = document.getElementById('bookCover').files[0];
+        if (coverFile) {
+            formData.append('cover', coverFile);
         }
-    ];
 
-    let currentBooks = [...mockBooks];
-    let selectedBooks = new Set();
-    let currentPage = 1;
-    let pageSize = 25;
-    let sortColumn = '';
-    let sortDirection = 'asc';
+        try {
+            // Kirim data ke backend via API
+            const response = await fetch('http://localhost:8080/api/books', {
+                method: 'POST',
+                body: formData,
+            });
 
-    // DOM Elements
-    const booksTableBody = document.getElementById('booksTableBody');
-    const addBookBtn = document.getElementById('addBookBtn');
-    const addBookModal = document.getElementById('addBookModal');
-    const editBookModal = document.getElementById('editBookModal');
-    const bookDetailsModal = document.getElementById('bookDetailsModal');
-    const bulkActionsBar = document.getElementById('bulkActionsBar');
-    const selectedCount = document.getElementById('selectedCount');
-    const selectAllCheckbox = document.getElementById('selectAll');
-
-    // Initialize page
-    document.addEventListener('DOMContentLoaded', function() {
-        renderBooksTable();
-        setupEventListeners();
-        updatePagination();
+            if (response.ok) {
+                const result = await response.json();
+                alert('Buku berhasil ditambahkan!');
+                // Tutup modal
+                document.getElementById('addBookModal').classList.add('hidden');
+                // Reset form (opsional)
+                document.getElementById('addBookForm').reset();
+                // Panggil fungsi untuk memperbarui tabel jika ada
+                // Contoh: updateBookTable(result);
+            } else {
+                const error = await response.json();
+                alert('Gagal menambahkan buku: ' + error.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan saat menambahkan buku.');
+        }
     });
 
-    // Setup event listeners
-    function setupEventListeners() {
-        // Modal controls
-        addBookBtn.addEventListener('click', () => showModal('addBookModal'));
-        document.getElementById('closeAddModal').addEventListener('click', () => hideModal('addBookModal'));
-        document.getElementById('closeEditModal').addEventListener('click', () => hideModal('editBookModal'));
-        document.getElementById('closeDetailsModal').addEventListener('click', () => hideModal('bookDetailsModal'));
-        document.getElementById('cancelAdd').addEventListener('click', () => hideModal('addBookModal'));
-        document.getElementById('cancelEdit').addEventListener('click', () => hideModal('editBookModal'));
+    // Event listener untuk tombol "Tambah Buku Baru" untuk menampilkan modal
+    document.getElementById('addBookBtn').addEventListener('click', () => {
+        document.getElementById('addBookModal').classList.remove('hidden');
+    });
 
-        // Form submissions
-        document.getElementById('addBookForm').addEventListener('submit', handleAddBook);
-        document.getElementById('editBookForm').addEventListener('submit', handleEditBook);
+    // Event listener untuk tombol "Batal" dan "Tutup" modal
+    document.getElementById('cancelAdd').addEventListener('click', () => {
+        document.getElementById('addBookModal').classList.add('hidden');
+        document.getElementById('addBookForm').reset();
+    });
+    document.getElementById('closeAddModal').addEventListener('click', () => {
+        document.getElementById('addBookModal').classList.add('hidden');
+        document.getElementById('addBookForm').reset();
+    });
 
-        // File upload and remove
-        document.getElementById('bookCover').addEventListener('change', handleCoverUpload);
-        document.querySelector('#coverUpload button').addEventListener('click', () => {
-            document.getElementById('bookCover').click();
-        });
-        document.getElementById('removeCover').addEventListener('click', handleRemoveCover);
+    // Event listener untuk unggah sampul
+    document.querySelector('#coverUpload button').addEventListener('click', () => {
+        document.getElementById('bookCover').click();
+    });
 
-        // Filters
-        document.getElementById('searchInput').addEventListener('input', debounce(applyFilters, 300));
-        document.getElementById('categoryFilter').addEventListener('change', applyFilters);
-        document.getElementById('authorFilter').addEventListener('input', debounce(applyFilters, 300));
-        document.getElementById('availableFilter').addEventListener('change', applyFilters);
-        document.getElementById('checkedOutFilter').addEventListener('change', applyFilters);
-        document.getElementById('reservedFilter').addEventListener('change', applyFilters);
-        document.getElementById('yearFrom').addEventListener('input', debounce(applyFilters, 300));
-        document.getElementById('yearTo').addEventListener('input', debounce(applyFilters, 300));
-        document.getElementById('applyFilters').addEventListener('click', applyFilters);
-        document.getElementById('resetFilters').addEventListener('click', resetFilters);
-
-        // Bulk actions
-        selectAllCheckbox.addEventListener('change', handleSelectAll);
-        document.getElementById('clearSelection').addEventListener('click', clearSelection);
-        document.getElementById('executeBulkAction').addEventListener('click', executeBulkAction);
-
-        // Pagination
-        document.getElementById('pageSize').addEventListener('change', handlePageSizeChange);
-        document.getElementById('prevPage').addEventListener('click', () => changePage(currentPage - 1));
-        document.getElementById('nextPage').addEventListener('click', () => changePage(currentPage + 1));
-
-        // Logout
-        document.getElementById('logoutBtn').addEventListener('click', handleLogout);
-
-        // Total copies change
-        document.getElementById('totalCopies').addEventListener('input', function() {
-            document.getElementById('availableCopies').value = this.value;
-        });
-    }
-
-    // Render books table
-    function renderBooksTable() {
-        const startIndex = (currentPage - 1) * pageSize;
-        const endIndex = startIndex + pageSize;
-        const booksToShow = currentBooks.slice(startIndex, endIndex);
-
-        booksTableBody.innerHTML = booksToShow.map(book => `
-            <tr class="hover:bg-secondary-50 transition-colors">
-                <td class="px-6 py-4">
-                    <input type="checkbox" class="book-checkbox h-4 w-4 text-primary-600 focus:ring-primary-500 border-secondary-300 rounded" data-book-id="${book.id}">
-                </td>
-                <td class="px-6 py-4">
-                    <img src="${book.cover}" alt="${book.title}" class="w-12 h-16 object-cover rounded shadow-sm"
-                         onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=400&auto=format&fit=crop'; this.onerror=null;">
-                </td>
-                <td class="px-6 py-4">
-                    <div class="text-sm font-medium text-text-primary">${book.title}</div>
-                </td>
-                <td class="px-6 py-4">
-                    <div class="text-sm text-text-secondary">${book.author}</div>
-                </td>
-                <td class="px-6 py-4">
-                    <div class="text-sm font-data text-text-secondary">${book.isbn}</div>
-                </td>
-                <td class="px-6 py-4">
-                    <span class="status-badge bg-secondary-100 text-secondary-800">${book.category}</span>
-                </td>
-                <td class="px-6 py-4">
-                    <div class="text-sm text-text-secondary">${book.availableCopies}/${book.totalCopies}</div>
-                </td>
-                <td class="px-6 py-4">
-                    <span class="status-badge ${getStatusClass(book.status)}">${getStatusText(book.status)}</span>
-                </td>
-                <td class="px-6 py-4">
-                    <div class="flex items-center space-x-2">
-                        <button onclick="viewBookDetails(${book.id})" class="text-primary-600 hover:text-primary-700 transition-colors" title="View Details">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
-                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
-                            </svg>
-                        </button>
-                        <button onclick="editBook(${book.id})" class="text-accent-600 hover:text-accent-700 transition-colors" title="Edit">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
-                            </svg>
-                        </button>
-                        <button onclick="deleteBook(${book.id})" class="text-error-600 hover:text-error-700 transition-colors" title="Delete">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" clip-rule="evenodd"/>
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-        `).join('');
-
-        // Add event listeners to checkboxes
-        document.querySelectorAll('.book-checkbox').forEach(checkbox => {
-            checkbox.addEventListener('change', handleBookSelection);
-        });
-
-        updateSelectionUI();
-    }
-
-    // Helper functions
-    function getStatusClass(status) {
-        switch(status) {
-            case 'available': return 'status-success';
-            case 'checked-out': return 'status-error';
-            case 'reserved': return 'status-warning';
-            default: return 'status-success';
-        }
-    }
-
-    function getStatusText(status) {
-        switch(status) {
-            case 'available': return 'Available';
-            case 'checked-out': return 'Checked Out';
-            case 'reserved': return 'Reserved';
-            default: return 'Available';
-        }
-    }
-
-    function showModal(modalId) {
-        document.getElementById(modalId).classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function hideModal(modalId) {
-        document.getElementById(modalId).classList.add('hidden');
-        document.body.style.overflow = 'auto';
-    }
-
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-
-    // Filter functions
-    function applyFilters() {
-        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-        const categoryFilter = document.getElementById('categoryFilter').value;
-        const authorFilter = document.getElementById('authorFilter').value.toLowerCase();
-        const availableFilter = document.getElementById('availableFilter').checked;
-        const checkedOutFilter = document.getElementById('checkedOutFilter').checked;
-        const reservedFilter = document.getElementById('reservedFilter').checked;
-        const yearFrom = document.getElementById('yearFrom').value;
-        const yearTo = document.getElementById('yearTo').value;
-
-        currentBooks = mockBooks.filter(book => {
-            // Search filter
-            if (searchTerm && !book.title.toLowerCase().includes(searchTerm) &&
-                !book.author.toLowerCase().includes(searchTerm) &&
-                !book.isbn.toLowerCase().includes(searchTerm)) {
-                return false;
-            }
-
-            // Category filter
-            if (categoryFilter && book.category !== categoryFilter) {
-                return false;
-            }
-
-            // Author filter
-            if (authorFilter && !book.author.toLowerCase().includes(authorFilter)) {
-                return false;
-            }
-
-            // Status filters
-            const statusFilters = [];
-            if (availableFilter) statusFilters.push('available');
-            if (checkedOutFilter) statusFilters.push('checked-out');
-            if (reservedFilter) statusFilters.push('reserved');
-
-            if (statusFilters.length > 0 && !statusFilters.includes(book.status)) {
-                return false;
-            }
-
-            // Year filters
-            if (yearFrom && book.publicationYear < parseInt(yearFrom)) {
-                return false;
-            }
-            if (yearTo && book.publicationYear > parseInt(yearTo)) {
-                return false;
-            }
-
-            return true;
-        });
-
-        currentPage = 1;
-        document.getElementById('resultsCount').textContent = currentBooks.length.toLocaleString();
-        renderBooksTable();
-        updatePagination();
-    }
-
-    function resetFilters() {
-        document.getElementById('searchInput').value = '';
-        document.getElementById('categoryFilter').value = '';
-        document.getElementById('authorFilter').value = '';
-        document.getElementById('availableFilter').checked = true;
-        document.getElementById('checkedOutFilter').checked = true;
-        document.getElementById('reservedFilter').checked = true;
-        document.getElementById('yearFrom').value = '';
-        document.getElementById('yearTo').value = '';
-
-        currentBooks = [...mockBooks];
-        currentPage = 1;
-        document.getElementById('resultsCount').textContent = currentBooks.length.toLocaleString();
-        renderBooksTable();
-        updatePagination();
-    }
-
-    // Selection functions
-    function handleSelectAll() {
-        const checkboxes = document.querySelectorAll('.book-checkbox');
-        checkboxes.forEach(checkbox => {
-            checkbox.checked = selectAllCheckbox.checked;
-            const bookId = parseInt(checkbox.dataset.bookId);
-            if (selectAllCheckbox.checked) {
-                selectedBooks.add(bookId);
-            } else {
-                selectedBooks.delete(bookId);
-            }
-        });
-        updateSelectionUI();
-    }
-
-    function handleBookSelection(event) {
-        const bookId = parseInt(event.target.dataset.bookId);
-        if (event.target.checked) {
-            selectedBooks.add(bookId);
-        } else {
-            selectedBooks.delete(bookId);
-        }
-        updateSelectionUI();
-    }
-
-    function updateSelectionUI() {
-        const count = selectedBooks.size;
-        selectedCount.textContent = count;
-
-        if (count > 0) {
-            bulkActionsBar.classList.remove('hidden');
-        } else {
-            bulkActionsBar.classList.add('hidden');
-        }
-
-        // Update select all checkbox
-        const visibleCheckboxes = document.querySelectorAll('.book-checkbox');
-        const checkedCount = Array.from(visibleCheckboxes).filter(cb => cb.checked).length;
-        selectAllCheckbox.checked = checkedCount === visibleCheckboxes.length && visibleCheckboxes.length > 0;
-        selectAllCheckbox.indeterminate = checkedCount > 0 && checkedCount < visibleCheckboxes.length;
-    }
-
-    function clearSelection() {
-        selectedBooks.clear();
-        document.querySelectorAll('.book-checkbox').forEach(checkbox => {
-            checkbox.checked = false;
-        });
-        selectAllCheckbox.checked = false;
-        selectAllCheckbox.indeterminate = false;
-        updateSelectionUI();
-    }
-
-    // Pagination functions
-    function updatePagination() {
-        const totalPages = Math.ceil(currentBooks.length / pageSize);
-        const startIndex = (currentPage - 1) * pageSize + 1;
-        const endIndex = Math.min(currentPage * pageSize, currentBooks.length);
-
-        document.getElementById('showingFrom').textContent = startIndex;
-        document.getElementById('showingTo').textContent = endIndex;
-        document.getElementById('totalBooks').textContent = currentBooks.length.toLocaleString();
-
-        document.getElementById('prevPage').disabled = currentPage === 1;
-        document.getElementById('nextPage').disabled = currentPage === totalPages;
-
-        // Generate page numbers
-        const pageNumbers = document.getElementById('pageNumbers');
-        pageNumbers.innerHTML = '';
-
-        for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) {
-            const button = document.createElement('button');
-            button.textContent = i;
-            button.className = `px-3 py-1 text-sm border rounded ${i === currentPage ? 'bg-primary text-white border-primary' : 'border-secondary-300 hover:bg-secondary-100'} transition-colors`;
-            button.addEventListener('click', () => changePage(i));
-            pageNumbers.appendChild(button);
-        }
-    }
-
-    function changePage(page) {
-        const totalPages = Math.ceil(currentBooks.length / pageSize);
-        if (page >= 1 && page <= totalPages) {
-            currentPage = page;
-            renderBooksTable();
-            updatePagination();
-        }
-    }
-
-    function handlePageSizeChange() {
-        pageSize = parseInt(document.getElementById('pageSize').value);
-        currentPage = 1;
-        renderBooksTable();
-        updatePagination();
-    }
-
-    // Book management functions
-    function handleAddBook(event) {
-        event.preventDefault();
-        // Add book logic here
-        alert('Book added successfully!');
-        hideModal('addBookModal');
-    }
-
-    function handleEditBook(event) {
-        event.preventDefault();
-        // Edit book logic here
-        alert('Book updated successfully!');
-        hideModal('editBookModal');
-    }
-
-    function editBook(bookId) {
-        const book = mockBooks.find(b => b.id === bookId);
-        if (book) {
-            // Populate edit form with book data
-            showModal('editBookModal');
-        }
-    }
-
-    function deleteBook(bookId) {
-        if (confirm('Are you sure you want to delete this book?')) {
-            // Delete book logic here
-            alert('Book deleted successfully!');
-            renderBooksTable();
-        }
-    }
-
-    function viewBookDetails(bookId) {
-        const book = mockBooks.find(b => b.id === bookId);
-        if (book) {
-            document.getElementById('bookDetailsContent').innerHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <img src="${book.cover}" alt="${book.title}" class="w-full h-64 object-cover rounded-lg shadow-medium">
-                    </div>
-                    <div class="space-y-4">
-                        <div>
-                            <h4 class="text-lg font-heading font-semibold text-text-primary">${book.title}</h4>
-                            <p class="text-text-secondary">by ${book.author}</p>
-                        </div>
-                        <div class="space-y-2">
-                            <p><span class="font-medium">ISBN:</span> ${book.isbn}</p>
-                            <p><span class="font-medium">Category:</span> ${book.category}</p>
-                            <p><span class="font-medium">Published:</span> ${book.publicationYear}</p>
-                            <p><span class="font-medium">Publisher:</span> ${book.publisher}</p>
-                            <p><span class="font-medium">Location:</span> ${book.location}</p>
-                            <p><span class="font-medium">Copies:</span> ${book.availableCopies}/${book.totalCopies} available</p>
-                            <p><span class="font-medium">Status:</span> <span class="status-badge ${getStatusClass(book.status)}">${getStatusText(book.status)}</span></p>
-                        </div>
-                        <div>
-                            <h5 class="font-medium text-text-primary mb-2">Description</h5>
-                            <p class="text-text-secondary text-sm">${book.description}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-            showModal('bookDetailsModal');
-        }
-    }
-
-    function handleCoverUpload(event) {
-        const file = event.target.files[0];
+    document.getElementById('bookCover').addEventListener('change', function() {
+        const file = this.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                document.getElementById('coverImage').src = e.target.result;
                 document.getElementById('coverPreview').classList.remove('hidden');
                 document.getElementById('coverUpload').classList.add('hidden');
+                document.getElementById('coverImage').src = e.target.result;
             };
             reader.readAsDataURL(file);
         }
-    }
+    });
 
-    function handleRemoveCover() {
-        document.getElementById('coverImage').src = '';
+    document.getElementById('removeCover').addEventListener('click', () => {
         document.getElementById('coverPreview').classList.add('hidden');
         document.getElementById('coverUpload').classList.remove('hidden');
-        document.getElementById('bookCover').value = ''; // Reset file input
-    }
-
-    function executeBulkAction() {
-        const action = document.getElementById('bulkAction').value;
-        if (!action) {
-            alert('Please select an action');
-            return;
-        }
-
-        const count = selectedBooks.size;
-        switch(action) {
-            case 'delete':
-                if (confirm(`Are you sure you want to delete ${count} selected books?`)) {
-                    alert(`${count} books deleted successfully!`);
-                    clearSelection();
-                    renderBooksTable();
-                }
-                break;
-            case 'category':
-                const newCategory = prompt('Enter new category:');
-                if (newCategory) {
-                    alert(`Category updated for ${count} books!`);
-                    clearSelection();
-                    renderBooksTable();
-                }
-                break;
-            case 'export':
-                alert(`Exporting ${count} selected books...`);
-                break;
-        }
-    }
-
-    function handleLogout() {
-        if (confirm('Are you sure you want to logout?')) {
-            localStorage.removeItem('currentUser');
-            window.location.href = 'login_screen.html';
-        }
-    }
-
-    // Check authentication
-    const currentUser = localStorage.getItem('currentUser');
-    if (!currentUser) {
-        window.location.href = 'login_screen.html';
-    } else {
-        const user = JSON.parse(currentUser);
-        if (user.role !== 'admin') {
-            window.location.href = 'member_dashboard.html';
-        }
-    }
+        document.getElementById('bookCover').value = '';
+    });
 </script>
-<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
 </body>
 </html>

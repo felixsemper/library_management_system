@@ -1,43 +1,4 @@
-# === Umum ===
 .DS_Store
-Thumbs.db
-ehthumbs.db
-*.log
-*.tmp
-*.bak
-*.swp
-*.swo
-
-# === Node.js / React ===
-node_modules/
+node_modules
+.idea
 package-lock.json
-yarn.lock
-.env
-.cache/
-build/
-dist/
-*.tsbuildinfo
-
-# === Java ===
-*.class
-*.jar
-*.war
-*.ear
-target/
-out/
-build/
-log/
-*.iml
-
-# === IDEs & Editor ===
-.idea/
-.vscode/
-*.iml
-
-# === OS folders ===
-__MACOSX/
-
-# === Tools ===
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
