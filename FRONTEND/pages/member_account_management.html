@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Member Account Management - Library Management System</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Flibraryma5192back.builtwithrocket.new&_v=0.1.2"></script>
+</head>
+<body class="min-h-screen bg-background">
+    <!-- Header Navigation -->
+    <header class="bg-surface border-b border-secondary-200 sticky top-0 z-40">
+        <div class="px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo and Title -->
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-primary-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-heading font-semibold text-text-primary">Library Management</h1>
+                            <p class="text-sm text-text-secondary">Administrator Dashboard</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="admin_dashboard.html" class="text-text-secondary hover:text-primary-600 font-medium transition-colors">
+                        Dashboard
+                    </a>
+                    <a href="book_catalog_management.html" class="text-text-secondary hover:text-primary-600 font-medium transition-colors">
+                        Books
+                    </a>
+                    <a href="member_account_management.html" class="text-primary-600 font-medium border-b-2 border-primary-600 pb-1">
+                        Members
+                    </a>
+                    <a href="loan_request_processing.html" class="text-text-secondary hover:text-primary-600 font-medium transition-colors">
+                        Loans
+                    </a>
+                </nav>
+
+                <!-- User Profile -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button class="flex items-center space-x-2 text-text-secondary hover:text-text-primary transition-colors">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Admin Profile" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <span class="text-sm font-medium">Admin</span>
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="login_screen.html" class="text-text-secondary hover:text-error-600 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex min-h-screen">
+        <!-- Left Panel - Filters and Search -->
+        <div class="w-80 bg-surface border-r border-secondary-200 p-6 overflow-y-auto">
+            <div class="space-y-6">
+                <!-- Search Section -->
+                <div>
+                    <h3 class="text-lg font-heading font-semibold text-text-primary mb-4">Search Members</h3>
+                    <div class="space-y-4">
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="Search by name, email, or ID..." class="input-field pl-10" />
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="w-4 h-4 text-secondary-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Section -->
+                <div>
+                    <h3 class="text-lg font-heading font-semibold text-text-primary mb-4">Filters</h3>
+                    <div class="space-y-4">
+                        <!-- Member Status -->
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Member Status</label>
+                            <select id="statusFilter" class="input-field">
+                                <option value>All Status</option>
+                                <option value="active">Active</option>
+                                <option value="suspended">Suspended</option>
+                                <option value="expired">Expired</option>
+                            </select>
+                        </div>
+
+                        <!-- Membership Type -->
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Membership Type</label>
+                            <select id="typeFilter" class="input-field">
+                                <option value>All Types</option>
+                                <option value="student">Student</option>
+                                <option value="faculty">Faculty</option>
+                                <option value="public">Public</option>
+                                <option value="premium">Premium</option>
+                            </select>
+                        </div>
+
+                        <!-- Registration Date Range -->
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Registration Date</label>
+                            <div class="space-y-2">
+                                <input type="date" id="dateFrom" class="input-field" placeholder="From" />
+                                <input type="date" id="dateTo" class="input-field" placeholder="To" />
+                            </div>
+                        </div>
+
+                        <!-- Outstanding Fines -->
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Outstanding Fines</label>
+                            <select id="finesFilter" class="input-field">
+                                <option value>All Members</option>
+                                <option value="with-fines">With Fines</option>
+                                <option value="no-fines">No Fines</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Actions -->
+                <div class="flex space-x-2">
+                    <button id="applyFilters" class="btn-primary flex-1">
+                        Apply Filters
+                    </button>
+                    <button id="clearFilters" class="btn-secondary">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="bg-primary-50 rounded-lg p-4">
+                    <h4 class="text-sm font-medium text-primary-900 mb-3">Quick Stats</h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-primary-700">Total Members:</span>
+                            <span class="font-medium text-primary-900" id="totalMembers">1,247</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-primary-700">Active:</span>
+                            <span class="font-medium text-primary-900" id="activeMembers">1,156</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-primary-700">Suspended:</span>
+                            <span class="font-medium text-primary-900" id="suspendedMembers">23</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-primary-700">With Fines:</span>
+                            <span class="font-medium text-primary-900" id="membersWithFines">68</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 p-6">
+            <!-- Page Header -->
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h2 class="text-2xl font-heading font-semibold text-text-primary">Member Account Management</h2>
+                    <p class="text-text-secondary mt-1">Manage member registrations, profiles, and account status</p>
+                </div>
+                <button id="registerNewMember" class="btn-primary flex items-center space-x-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Register New Member</span>
+                </button>
+            </div>
+
+            <!-- Bulk Operations Toolbar -->
+            <div class="bg-surface rounded-lg border border-secondary-200 p-4 mb-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" id="selectAll" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-secondary-300 rounded" />
+                            <label for="selectAll" class="text-sm text-text-secondary">Select All</label>
+                        </div>
+                        <span id="selectedCount" class="text-sm text-text-secondary">0 selected</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button id="bulkRenew" class="btn-secondary text-sm" disabled>
+                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
+                            </svg>
+                            Renew
+                        </button>
+                        <button id="bulkSuspend" class="btn-secondary text-sm" disabled>
+                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Suspend
+                        </button>
+                        <button id="bulkMessage" class="btn-secondary text-sm" disabled>
+                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                            </svg>
+                            Send Message
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Members Table -->
+            <div class="bg-surface rounded-lg border border-secondary-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-secondary-200">
+                        <thead class="bg-secondary-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left">
+                                    <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-secondary-300 rounded" />
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-secondary-500 uppercase tracking-wider cursor-pointer hover:text-secondary-700">
+                                    Member
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-secondary-500 uppercase tracking-wider cursor-pointer hover:text-secondary-700">
+                                    Contact Info
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-secondary-500 uppercase tracking-wider cursor-pointer hover:text-secondary-700">
+                                    Membership
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-secondary-500 uppercase tracking-wider cursor-pointer hover:text-secondary-700">
+                                    Loan History
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-secondary-500 uppercase tracking-wider cursor-pointer hover:text-secondary-700">
+                                    Status
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-secondary-500 uppercase tracking-wider">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="membersTableBody" class="bg-surface divide-y divide-secondary-200">
+                            <!-- Member rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex items-center justify-between mt-6">
+                <div class="text-sm text-text-secondary">
+                    Showing <span id="showingFrom">1</span> to <span id="showingTo">10</span> of <span id="totalResults">1,247</span> results
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button id="prevPage" class="btn-secondary" disabled>
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                    <span class="text-sm text-text-secondary">Page <span id="currentPage">1</span> of <span id="totalPages">125</span></span>
+                    <button id="nextPage" class="btn-secondary">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Member Profile Slide-out Panel -->
+    <div id="memberProfilePanel" class="fixed inset-y-0 right-0 w-96 bg-surface border-l border-secondary-200 transform translate-x-full transition-transform duration-300 ease-in-out z-50 overflow-y-auto">
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-lg font-heading font-semibold text-text-primary">Member Profile</h3>
+                <button id="closeMemberProfile" class="text-secondary-400 hover:text-secondary-600">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="memberProfileContent">
+                <!-- Profile content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="registrationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-surface rounded-lg max-w-2xl w-full mx-4 max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-lg font-heading font-semibold text-text-primary">Register New Member</h3>
+                    <button id="closeRegistrationModal" class="text-secondary-400 hover:text-secondary-600">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                </div>
+                <form id="registrationForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">First Name *</label>
+                            <input type="text" name="firstName" class="input-field" required />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Last Name *</label>
+                            <input type="text" name="lastName" class="input-field" required />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Email *</label>
+                            <input type="email" name="email" class="input-field" required />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Phone</label>
+                            <input type="tel" name="phone" class="input-field" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Membership Type *</label>
+                            <select name="membershipType" class="input-field" required>
+                                <option value>Select Type</option>
+                                <option value="student">Student</option>
+                                <option value="faculty">Faculty</option>
+                                <option value="public">Public</option>
+                                <option value="premium">Premium</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Date of Birth</label>
+                            <input type="date" name="dateOfBirth" class="input-field" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Address</label>
+                        <textarea name="address" rows="3" class="input-field"></textarea>
+                    </div>
+                    <div class="flex justify-end space-x-4">
+                        <button type="button" id="cancelRegistration" class="btn-secondary">Cancel</button>
+                        <button type="submit" class="btn-primary">Register Member</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mock member data
+        const mockMembers = [
+            {
+                id: 'M001',
+                firstName: 'John',
+                lastName: 'Doe',
+                email: 'john.doe@email.com',
+                phone: '+1-555-0123',
+                membershipType: 'student',
+                status: 'active',
+                joinDate: '2024-01-15',
+                totalLoans: 12,
+                activeLoans: 2,
+                overdueLoans: 0,
+                fines: 0,
+                profileImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            },
+            {
+                id: 'M002',
+                firstName: 'Jane',
+                lastName: 'Smith',
+                email: 'jane.smith@email.com',
+                phone: '+1-555-0124',
+                membershipType: 'faculty',
+                status: 'active',
+                joinDate: '2023-09-20',
+                totalLoans: 28,
+                activeLoans: 3,
+                overdueLoans: 1,
+                fines: 15.50,
+                profileImage: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            },
+            {
+                id: 'M003',
+                firstName: 'Michael',
+                lastName: 'Johnson',
+                email: 'michael.j@email.com',
+                phone: '+1-555-0125',
+                membershipType: 'public',
+                status: 'suspended',
+                joinDate: '2024-03-10',
+                totalLoans: 5,
+                activeLoans: 0,
+                overdueLoans: 2,
+                fines: 45.00,
+                profileImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            },
+            {
+                id: 'M004',
+                firstName: 'Sarah',
+                lastName: 'Wilson',
+                email: 'sarah.wilson@email.com',
+                phone: '+1-555-0126',
+                membershipType: 'premium',
+                status: 'active',
+                joinDate: '2023-11-05',
+                totalLoans: 35,
+                activeLoans: 5,
+                overdueLoans: 0,
+                fines: 0,
+                profileImage: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            },
+            {
+                id: 'M005',
+                firstName: 'David',
+                lastName: 'Brown',
+                email: 'david.brown@email.com',
+                phone: '+1-555-0127',
+                membershipType: 'student',
+                status: 'expired',
+                joinDate: '2022-08-15',
+                totalLoans: 18,
+                activeLoans: 0,
+                overdueLoans: 0,
+                fines: 0,
+                profileImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            }
+        ];
+
+        let filteredMembers = [...mockMembers];
+        let selectedMembers = new Set();
+
+        // DOM Elements
+        const searchInput = document.getElementById('searchInput');
+        const statusFilter = document.getElementById('statusFilter');
+        const typeFilter = document.getElementById('typeFilter');
+        const dateFromFilter = document.getElementById('dateFrom');
+        const dateToFilter = document.getElementById('dateTo');
+        const finesFilter = document.getElementById('finesFilter');
+        const applyFiltersBtn = document.getElementById('applyFilters');
+        const clearFiltersBtn = document.getElementById('clearFilters');
+        const membersTableBody = document.getElementById('membersTableBody');
+        const selectAllCheckbox = document.getElementById('selectAll');
+        const selectedCountSpan = document.getElementById('selectedCount');
+        const registerNewMemberBtn = document.getElementById('registerNewMember');
+        const registrationModal = document.getElementById('registrationModal');
+        const memberProfilePanel = document.getElementById('memberProfilePanel');
+
+        // Initialize page
+        function initializePage() {
+            renderMembersTable();
+            updateStats();
+            setupEventListeners();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search and filters
+            searchInput.addEventListener('input', debounce(applyFilters, 300));
+            applyFiltersBtn.addEventListener('click', applyFilters);
+            clearFiltersBtn.addEventListener('click', clearFilters);
+
+            // Bulk operations
+            selectAllCheckbox.addEventListener('change', toggleSelectAll);
+            document.getElementById('bulkRenew').addEventListener('click', () => performBulkAction('renew'));
+            document.getElementById('bulkSuspend').addEventListener('click', () => performBulkAction('suspend'));
+            document.getElementById('bulkMessage').addEventListener('click', () => performBulkAction('message'));
+
+            // Registration modal
+            registerNewMemberBtn.addEventListener('click', () => showModal('registrationModal'));
+            document.getElementById('closeRegistrationModal').addEventListener('click', () => hideModal('registrationModal'));
+            document.getElementById('cancelRegistration').addEventListener('click', () => hideModal('registrationModal'));
+            document.getElementById('registrationForm').addEventListener('submit', handleRegistration);
+
+            // Member profile panel
+            document.getElementById('closeMemberProfile').addEventListener('click', closeMemberProfile);
+        }
+
+        // Render members table
+        function renderMembersTable() {
+            membersTableBody.innerHTML = '';
+            
+            filteredMembers.forEach(member => {
+                const row = createMemberRow(member);
+                membersTableBody.appendChild(row);
+            });
+
+            updateBulkOperationsState();
+        }
+
+        // Create member row
+        function createMemberRow(member) {
+            const row = document.createElement('tr');
+            row.className = 'hover:bg-secondary-50 transition-colors';
+            
+            const statusClass = {
+                'active': 'status-success',
+                'suspended': 'status-error',
+                'expired': 'status-warning'
+            }[member.status];
+
+            const membershipTypeClass = {
+                'student': 'bg-blue-100 text-blue-800',
+                'faculty': 'bg-purple-100 text-purple-800',
+                'public': 'bg-gray-100 text-gray-800',
+                'premium': 'bg-yellow-100 text-yellow-800'
+            }[member.membershipType];
+
+            row.innerHTML = `
+                <td class="px-6 py-4">
+                    <input type="checkbox" class="member-checkbox h-4 w-4 text-primary-600 focus:ring-primary-500 border-secondary-300 rounded" data-member-id="${member.id}">
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center">
+                        <img src="${member.profileImage}" alt="${member.firstName} ${member.lastName}" 
+                             class="w-10 h-10 rounded-full object-cover mr-3"
+                             onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                        <div>
+                            <div class="text-sm font-medium text-text-primary">${member.firstName} ${member.lastName}</div>
+                            <div class="text-sm text-text-secondary">ID: ${member.id}</div>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="text-sm text-text-primary">${member.email}</div>
+                    <div class="text-sm text-text-secondary">${member.phone}</div>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex flex-col space-y-1">
+                        <span class="status-badge ${membershipTypeClass}">${member.membershipType.charAt(0).toUpperCase() + member.membershipType.slice(1)}</span>
+                        <div class="text-xs text-text-secondary">Joined: ${formatDate(member.joinDate)}</div>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="text-sm">
+                        <div class="text-text-primary">Total: ${member.totalLoans}</div>
+                        <div class="text-text-secondary">Active: ${member.activeLoans}</div>
+                        ${member.overdueLoans > 0 ? `<div class="text-error-600">Overdue: ${member.overdueLoans}</div>` : ''}
+                        ${member.fines > 0 ? `<div class="text-warning-600">Fines: $${member.fines.toFixed(2)}</div>` : ''}
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="status-badge ${statusClass}">${member.status.charAt(0).toUpperCase() + member.status.slice(1)}</span>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center space-x-2">
+                        <button onclick="viewMemberProfile('${member.id}')" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+                            View
+                        </button>
+                        <button onclick="editMember('${member.id}')" class="text-secondary-600 hover:text-secondary-700 text-sm font-medium">
+                            Edit
+                        </button>
+                        <button onclick="sendMessage('${member.id}')" class="text-accent-600 hover:text-accent-700 text-sm font-medium">
+                            Message
+                        </button>
+                        ${member.status === 'active' ? 
+                            `<button onclick="suspendMember('${member.id}')" class="text-error-600 hover:text-error-700 text-sm font-medium">Suspend</button>` :
+                            `<button onclick="activateMember('${member.id}')" class="text-success-600 hover:text-success-700 text-sm font-medium">Activate</button>`
+                        }
+                    </div>
+                </td>
+            `;
+
+            // Add event listener for checkbox
+            const checkbox = row.querySelector('.member-checkbox');
+            checkbox.addEventListener('change', handleMemberSelection);
+
+            return row;
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const typeValue = typeFilter.value;
+            const dateFrom = dateFromFilter.value;
+            const dateTo = dateToFilter.value;
+            const finesValue = finesFilter.value;
+
+            filteredMembers = mockMembers.filter(member => {
+                // Search filter
+                const matchesSearch = !searchTerm || 
+                    member.firstName.toLowerCase().includes(searchTerm) ||
+                    member.lastName.toLowerCase().includes(searchTerm) ||
+                    member.email.toLowerCase().includes(searchTerm) ||
+                    member.id.toLowerCase().includes(searchTerm);
+
+                // Status filter
+                const matchesStatus = !statusValue || member.status === statusValue;
+
+                // Type filter
+                const matchesType = !typeValue || member.membershipType === typeValue;
+
+                // Date range filter
+                const memberDate = new Date(member.joinDate);
+                const matchesDateFrom = !dateFrom || memberDate >= new Date(dateFrom);
+                const matchesDateTo = !dateTo || memberDate <= new Date(dateTo);
+
+                // Fines filter
+                const matchesFines = !finesValue || 
+                    (finesValue === 'with-fines' && member.fines > 0) ||
+                    (finesValue === 'no-fines' && member.fines === 0);
+
+                return matchesSearch && matchesStatus && matchesType && matchesDateFrom && matchesDateTo && matchesFines;
+            });
+
+            renderMembersTable();
+            updateStats();
+        }
+
+        // Clear filters
+        function clearFilters() {
+            searchInput.value = '';
+            statusFilter.value = '';
+            typeFilter.value = '';
+            dateFromFilter.value = '';
+            dateToFilter.value = '';
+            finesFilter.value = '';
+            
+            filteredMembers = [...mockMembers];
+            renderMembersTable();
+            updateStats();
+        }
+
+        // Update statistics
+        function updateStats() {
+            const activeCount = mockMembers.filter(m => m.status === 'active').length;
+            const suspendedCount = mockMembers.filter(m => m.status === 'suspended').length;
+            const withFinesCount = mockMembers.filter(m => m.fines > 0).length;
+
+            document.getElementById('totalMembers').textContent = mockMembers.length.toLocaleString();
+            document.getElementById('activeMembers').textContent = activeCount.toLocaleString();
+            document.getElementById('suspendedMembers').textContent = suspendedCount.toLocaleString();
+            document.getElementById('membersWithFines').textContent = withFinesCount.toLocaleString();
+        }
+
+        // Handle member selection
+        function handleMemberSelection(event) {
+            const memberId = event.target.dataset.memberId;
+            if (event.target.checked) {
+                selectedMembers.add(memberId);
+            } else {
+                selectedMembers.delete(memberId);
+            }
+            updateBulkOperationsState();
+        }
+
+        // Toggle select all
+        function toggleSelectAll() {
+            const checkboxes = document.querySelectorAll('.member-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = selectAllCheckbox.checked;
+                const memberId = checkbox.dataset.memberId;
+                if (selectAllCheckbox.checked) {
+                    selectedMembers.add(memberId);
+                } else {
+                    selectedMembers.delete(memberId);
+                }
+            });
+            updateBulkOperationsState();
+        }
+
+        // Update bulk operations state
+        function updateBulkOperationsState() {
+            const selectedCount = selectedMembers.size;
+            selectedCountSpan.textContent = `${selectedCount} selected`;
+            
+            const bulkButtons = ['bulkRenew', 'bulkSuspend', 'bulkMessage'];
+            bulkButtons.forEach(buttonId => {
+                const button = document.getElementById(buttonId);
+                button.disabled = selectedCount === 0;
+                if (selectedCount === 0) {
+                    button.classList.add('opacity-50', 'cursor-not-allowed');
+                } else {
+                    button.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            });
+        }
+
+        // Perform bulk action
+        function performBulkAction(action) {
+            if (selectedMembers.size === 0) return;
+            
+            const actionText = {
+                'renew': 'renew membership for',
+                'suspend': 'suspend',
+                'message': 'send message to'
+            }[action];
+
+            if (confirm(`Are you sure you want to ${actionText} ${selectedMembers.size} selected member(s)?`)) {
+                // Simulate action
+                setTimeout(() => {
+                    alert(`Successfully ${action}ed ${selectedMembers.size} member(s)`);
+                    selectedMembers.clear();
+                    selectAllCheckbox.checked = false;
+                    updateBulkOperationsState();
+                }, 500);
+            }
+        }
+
+        // View member profile
+        function viewMemberProfile(memberId) {
+            const member = mockMembers.find(m => m.id === memberId);
+            if (!member) return;
+
+            const profileContent = document.getElementById('memberProfileContent');
+            profileContent.innerHTML = `
+                <div class="space-y-6">
+                    <div class="text-center">
+                        <img src="${member.profileImage}" alt="${member.firstName} ${member.lastName}" 
+                             class="w-24 h-24 rounded-full object-cover mx-auto mb-4"
+                             onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                        <h4 class="text-lg font-semibold text-text-primary">${member.firstName} ${member.lastName}</h4>
+                        <p class="text-text-secondary">Member ID: ${member.id}</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h5 class="font-medium text-text-primary mb-2">Contact Information</h5>
+                            <div class="space-y-1 text-sm">
+                                <p><span class="text-text-secondary">Email:</span> ${member.email}</p>
+                                <p><span class="text-text-secondary">Phone:</span> ${member.phone}</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h5 class="font-medium text-text-primary mb-2">Membership Details</h5>
+                            <div class="space-y-1 text-sm">
+                                <p><span class="text-text-secondary">Type:</span> ${member.membershipType.charAt(0).toUpperCase() + member.membershipType.slice(1)}</p>
+                                <p><span class="text-text-secondary">Status:</span> <span class="status-badge ${member.status === 'active' ? 'status-success' : member.status === 'suspended' ? 'status-error' : 'status-warning'}">${member.status.charAt(0).toUpperCase() + member.status.slice(1)}</span></p>
+                                <p><span class="text-text-secondary">Join Date:</span> ${formatDate(member.joinDate)}</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h5 class="font-medium text-text-primary mb-2">Borrowing History</h5>
+                            <div class="space-y-1 text-sm">
+                                <p><span class="text-text-secondary">Total Loans:</span> ${member.totalLoans}</p>
+                                <p><span class="text-text-secondary">Active Loans:</span> ${member.activeLoans}</p>
+                                <p><span class="text-text-secondary">Overdue Loans:</span> ${member.overdueLoans}</p>
+                                <p><span class="text-text-secondary">Outstanding Fines:</span> $${member.fines.toFixed(2)}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-2">
+                        <button onclick="editMember('${member.id}')" class="btn-primary flex-1">Edit Profile</button>
+                        <button onclick="viewMemberLoans('${member.id}')" class="btn-secondary flex-1">View Loans</button>
+                    </div>
+                </div>
+            `;
+
+            memberProfilePanel.classList.remove('translate-x-full');
+        }
+
+        // Close member profile
+        function closeMemberProfile() {
+            memberProfilePanel.classList.add('translate-x-full');
+        }
+
+        // Handle registration
+        function handleRegistration(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const memberData = Object.fromEntries(formData.entries());
+            
+            // Simulate registration
+            setTimeout(() => {
+                alert('Member registered successfully!');
+                hideModal('registrationModal');
+                event.target.reset();
+            }, 500);
+        }
+
+        // Utility functions
+        function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function hideModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Member action functions
+        function editMember(memberId) {
+            alert(`Edit member ${memberId} - Feature coming soon!`);
+        }
+
+        function sendMessage(memberId) {
+            alert(`Send message to member ${memberId} - Feature coming soon!`);
+        }
+
+        function suspendMember(memberId) {
+            if (confirm('Are you sure you want to suspend this member?')) {
+                alert(`Member ${memberId} suspended successfully!`);
+            }
+        }
+
+        function activateMember(memberId) {
+            if (confirm('Are you sure you want to activate this member?')) {
+                alert(`Member ${memberId} activated successfully!`);
+            }
+        }
+
+        function viewMemberLoans(memberId) {
+            alert(`View loans for member ${memberId} - Feature coming soon!`);
+        }
+
+        // Initialize page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Library Management System</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Flibraryma5192back.builtwithrocket.new&_v=0.1.2"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-primary-50 via-background to-accent-50 flex items-center justify-center p-4">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,<svg width=" 60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%232563EB" fill-opacity="0.1"><path d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"></path></g></g>'); background-size: 60px 60px;"></div>
+    </div>
+
+    <!-- Main Login Container -->
+    <div class="relative w-full max-w-md">
+        <!-- Login Card -->
+        <div class="bg-surface rounded-xl shadow-large border border-secondary-200 p-8 backdrop-blur-sm">
+            <!-- Logo and Branding -->
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-xl mb-4">
+                    <svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                    </svg>
+                </div>
+                <h1 class="text-2xl font-heading font-semibold text-text-primary mb-2">Library Management</h1>
+                <p class="text-text-secondary text-sm">Sign in to access your account</p>
+            </div>
+
+            <!-- Error Message Container -->
+            <div id="errorMessage" class="hidden mb-4 p-3 bg-error-50 border border-error-200 rounded-md">
+                <div class="flex items-center">
+                    <svg class="w-4 h-4 text-error-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                    </svg>
+                    <span id="errorText" class="text-error-800 text-sm font-medium"></span>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="space-y-6">
+                <!-- Email/Username Field -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-text-primary mb-2">
+                        Email or Username
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="email" name="email" class="input-field pl-10" placeholder="Enter your email or username" required />
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="w-4 h-4 text-secondary-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-text-primary mb-2">
+                        Password
+                    </label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" class="input-field pl-10 pr-10" placeholder="Enter your password" required />
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="w-4 h-4 text-secondary-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                            <svg id="eyeIcon" class="w-4 h-4 text-secondary-400 hover:text-secondary-600 transition-colors" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Role Selection -->
+                <div>
+                    <label for="role" class="block text-sm font-medium text-text-primary mb-2">
+                        Login as
+                    </label>
+                    <select id="role" name="role" class="input-field" required>
+                        <option value>Select your role</option>
+                        <option value="admin">Administrator</option>
+                        <option value="member">Library Member</option>
+                    </select>
+                </div>
+
+                <!-- Remember Me -->
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember" name="remember" type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-secondary-300 rounded" />
+                        <label for="remember" class="ml-2 block text-sm text-text-secondary">
+                            Remember me
+                        </label>
+                    </div>
+                    <a href="#" class="text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <!-- Sign In Button -->
+                <button type="submit" id="signInBtn" class="w-full btn-primary py-3 text-base font-medium relative overflow-hidden group">
+                    <span id="signInText">Sign In</span>
+                    <div id="loadingSpinner" class="hidden absolute inset-0 flex items-center justify-center">
+                        <svg class="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                        </svg>
+                    </div>
+                </button>
+            </form>
+
+            <!-- Divider -->
+            <div class="mt-6 mb-6">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-secondary-200"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-surface text-text-secondary">New to our library?</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Register Link -->
+            <div class="text-center">
+                <a href="#" class="text-primary-600 hover:text-primary-700 font-medium text-sm transition-colors">
+                    Register as New Member
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-6">
+            <p class="text-xs text-text-secondary">
+                © 2025 Library Management System. All rights reserved.
+            </p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mock user credentials for testing
+        const mockUsers = {
+            'admin@library.com': { password: 'admin123', role: 'admin', name: 'Library Administrator' },
+            'admin': { password: 'admin123', role: 'admin', name: 'Library Administrator' },
+            'member@library.com': { password: 'member123', role: 'member', name: 'John Doe' },
+            'member': { password: 'member123', role: 'member', name: 'John Doe' },
+            'librarian@library.com': { password: 'lib123', role: 'admin', name: 'Head Librarian' },
+            'student@university.edu': { password: 'student123', role: 'member', name: 'Jane Smith' }
+        };
+
+        // DOM Elements
+        const loginForm = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const roleSelect = document.getElementById('role');
+        const signInBtn = document.getElementById('signInBtn');
+        const signInText = document.getElementById('signInText');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        const togglePassword = document.getElementById('togglePassword');
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        // Password toggle functionality
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            if (type === 'text') {
+                eyeIcon.innerHTML = `
+                    <path d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z"/>
+                    <path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z"/>
+                `;
+            } else {
+                eyeIcon.innerHTML = `
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                `;
+            }
+        });
+
+        // Show error message
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+            errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Hide error message
+        function hideError() {
+            errorMessage.classList.add('hidden');
+        }
+
+        // Show loading state
+        function showLoading() {
+            signInText.classList.add('opacity-0');
+            loadingSpinner.classList.remove('hidden');
+            signInBtn.disabled = true;
+        }
+
+        // Hide loading state
+        function hideLoading() {
+            signInText.classList.remove('opacity-0');
+            loadingSpinner.classList.add('hidden');
+            signInBtn.disabled = false;
+        }
+
+        // Form validation
+        function validateForm() {
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            const role = roleSelect.value;
+
+            if (!email) {
+                showError('Please enter your email or username');
+                emailInput.focus();
+                return false;
+            }
+
+            if (!password) {
+                showError('Please enter your password');
+                passwordInput.focus();
+                return false;
+            }
+
+            if (!role) {
+                showError('Please select your role');
+                roleSelect.focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        // Authenticate user
+        function authenticateUser(email, password, role) {
+            const user = mockUsers[email.toLowerCase()];
+
+            if (!user) {
+                return { success: false, message: 'Invalid email or username' };
+            }
+
+            if (user.password !== password) {
+                return { success: false, message: 'Invalid password' };
+            }
+
+            if (user.role !== role) {
+                return { success: false, message: 'Role mismatch. Please select the correct role.' };
+            }
+
+            return { success: true, user: user };
+        }
+
+        // Handle form submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            hideError();
+
+            if (!validateForm()) {
+                return;
+            }
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            const role = roleSelect.value;
+
+            showLoading();
+
+            // Simulate API call delay
+            setTimeout(() => {
+                const authResult = authenticateUser(email, password, role);
+
+                if (authResult.success) {
+                    // Store user session
+                    localStorage.setItem('currentUser', JSON.stringify({
+                        email: email,
+                        name: authResult.user.name,
+                        role: authResult.user.role,
+                        loginTime: new Date().toISOString()
+                    }));
+
+                    // Redirect based on role
+                    if (role === 'admin') {
+                        window.location.href = 'admin_dashboard.html';
+                    } else {
+                        window.location.href = 'member_dashboard.html';
+                    }
+                } else {
+                    hideLoading();
+                    showError(authResult.message);
+                }
+            }, 1500);
+        });
+
+        // Clear error on input change
+        [emailInput, passwordInput, roleSelect].forEach(input => {
+            input.addEventListener('input', hideError);
+            input.addEventListener('change', hideError);
+        });
+
+        // Auto-focus first input
+        emailInput.focus();
+
+        // Check if user is already logged in
+        const currentUser = localStorage.getItem('currentUser');
+        if (currentUser) {
+            const user = JSON.parse(currentUser);
+            if (user.role === 'admin') {
+                window.location.href = 'admin_dashboard.html';
+            } else {
+                window.location.href = 'member_dashboard.html';
+            }
+        }
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

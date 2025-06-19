@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Member Dashboard - Library Management System</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Flibraryma5192back.builtwithrocket.new&_v=0.1.2"></script>
+</head>
+<body class="min-h-screen bg-background">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-subtle border-b border-secondary-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo and Branding -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center mr-3">
+                            <svg class="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                            </svg>
+                        </div>
+                        <h1 class="text-xl font-heading font-semibold text-text-primary">Library Management</h1>
+                    </div>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-lg mx-8">
+                    <div class="relative">
+                        <input type="text" id="globalSearch" placeholder="Search books, authors, or ISBN..." class="w-full pl-10 pr-4 py-2 border border-secondary-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="w-4 h-4 text-secondary-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Profile -->
+                <div class="flex items-center space-x-4">
+                    <!-- Notifications -->
+                    <button class="relative p-2 text-secondary-400 hover:text-secondary-600 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
+                        </svg>
+                        <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-error-500"></span>
+                    </button>
+
+                    <!-- Profile Dropdown -->
+                    <div class="relative">
+                        <button id="profileDropdown" class="flex items-center space-x-2 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500">
+                            <img class="h-8 w-8 rounded-full object-cover" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <span class="text-text-primary font-medium" id="userName">John Doe</span>
+                            <svg class="w-4 h-4 text-secondary-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- Dropdown Menu -->
+                        <div id="profileMenu" class="hidden absolute right-0 mt-2 w-48 bg-surface rounded-md shadow-large border border-secondary-200 z-50">
+                            <div class="py-1">
+                                <a href="member_account_management.html" class="block px-4 py-2 text-sm text-text-primary hover:bg-secondary-50 transition-colors">Profile Settings</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-text-primary hover:bg-secondary-50 transition-colors">My Reviews</a>
+                                <div class="border-t border-secondary-200"></div>
+                                <button id="logoutBtn" class="block w-full text-left px-4 py-2 text-sm text-error-600 hover:bg-error-50 transition-colors">Sign Out</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="bg-surface border-b border-secondary-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex space-x-8">
+                <a href="member_dashboard.html" class="border-b-2 border-primary-600 text-primary-600 py-4 px-1 text-sm font-medium">Dashboard</a>
+                <a href="loan_request_processing.html" class="border-b-2 border-transparent text-text-secondary hover:text-text-primary hover:border-secondary-300 py-4 px-1 text-sm font-medium transition-colors">My Loans</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Left Sidebar - Quick Stats -->
+            <div class="lg:col-span-1">
+                <div class="space-y-6">
+                    <!-- Member Stats Card -->
+                    <div class="card">
+                        <h3 class="text-lg font-heading font-semibold text-text-primary mb-4">Quick Stats</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-text-secondary text-sm">Current Loans</span>
+                                <span class="text-2xl font-semibold text-primary-600">3</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-text-secondary text-sm">Available Slots</span>
+                                <span class="text-2xl font-semibold text-success-600">2</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-text-secondary text-sm">Account Status</span>
+                                <span class="status-badge status-success">Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Due Dates -->
+                    <div class="card">
+                        <h3 class="text-lg font-heading font-semibold text-text-primary mb-4">Due Soon</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start space-x-3">
+                                <img src="https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Book cover" class="w-10 h-12 object-cover rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-text-primary truncate">The Great Gatsby</p>
+                                    <p class="text-xs text-warning-600 font-medium">Due in 2 days</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <img src="https://images.pixabay.com/photo/2015/11/19/21/10/glasses-1052010_1280.jpg" alt="Book cover" class="w-10 h-12 object-cover rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-text-primary truncate">To Kill a Mockingbird</p>
+                                    <p class="text-xs text-success-600 font-medium">Due in 5 days</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="card">
+                        <h3 class="text-lg font-heading font-semibold text-text-primary mb-4">Quick Actions</h3>
+                        <div class="space-y-2">
+                            <a href="book_catalog_management.html" class="w-full btn-primary text-center block">Browse Books</a>
+                            <a href="loan_request_processing.html" class="w-full btn-secondary text-center block">View My Loans</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="lg:col-span-2">
+                <div class="space-y-8">
+                    <!-- Welcome Section -->
+                    <div class="card bg-gradient-to-r from-primary-50 to-accent-50 border-primary-200">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-primary-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-heading font-semibold text-text-primary">Welcome back, <span id="welcomeName">John</span>!</h2>
+                                <p class="text-text-secondary">Discover new books and manage your reading journey</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personalized Recommendations -->
+                    <div class="card">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-heading font-semibold text-text-primary">Recommended for You</h3>
+                            <a href="book_catalog_management.html" class="text-primary-600 hover:text-primary-700 text-sm font-medium transition-colors">View All</a>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="flex space-x-4 p-4 bg-secondary-50 rounded-lg hover:bg-secondary-100 transition-colors cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Book cover" class="w-16 h-20 object-cover rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-text-primary">1984</h4>
+                                    <p class="text-sm text-text-secondary">George Orwell</p>
+                                    <div class="flex items-center mt-2">
+                                        <div class="flex text-warning-500">
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                        </div>
+                                        <span class="text-xs text-text-secondary ml-1">(4.8)</span>
+                                    </div>
+                                    <button class="mt-2 text-xs bg-primary-600 text-white px-3 py-1 rounded-md hover:bg-primary-700 transition-colors">Request</button>
+                                </div>
+                            </div>
+                            <div class="flex space-x-4 p-4 bg-secondary-50 rounded-lg hover:bg-secondary-100 transition-colors cursor-pointer">
+                                <img src="https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Book cover" class="w-16 h-20 object-cover rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-text-primary">Pride and Prejudice</h4>
+                                    <p class="text-sm text-text-secondary">Jane Austen</p>
+                                    <div class="flex items-center mt-2">
+                                        <div class="flex text-warning-500">
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                            <svg class="w-4 h-4 text-secondary-300 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                        </div>
+                                        <span class="text-xs text-text-secondary ml-1">(4.6)</span>
+                                    </div>
+                                    <button class="mt-2 text-xs bg-primary-600 text-white px-3 py-1 rounded-md hover:bg-primary-700 transition-colors">Request</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- New Arrivals Carousel -->
+                    <div class="card">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-heading font-semibold text-text-primary">New Arrivals</h3>
+                            <div class="flex space-x-2">
+                                <button id="prevBtn" class="p-2 rounded-full bg-secondary-100 hover:bg-secondary-200 transition-colors">
+                                    <svg class="w-4 h-4 text-secondary-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                </button>
+                                <button id="nextBtn" class="p-2 rounded-full bg-secondary-100 hover:bg-secondary-200 transition-colors">
+                                    <svg class="w-4 h-4 text-secondary-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="overflow-hidden">
+                            <div id="carousel" class="flex space-x-4 transition-transform duration-300">
+                                <div class="flex-none w-32">
+                                    <img src="https://images.pixabay.com/photo/2016/11/29/05/45/astronomy-1867616_1280.jpg" alt="New book" class="w-full h-40 object-cover rounded-lg" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                    <h4 class="text-sm font-medium text-text-primary mt-2">Cosmos</h4>
+                                    <p class="text-xs text-text-secondary">Carl Sagan</p>
+                                </div>
+                                <div class="flex-none w-32">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="New book" class="w-full h-40 object-cover rounded-lg" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                    <h4 class="text-sm font-medium text-text-primary mt-2">The Alchemist</h4>
+                                    <p class="text-xs text-text-secondary">Paulo Coelho</p>
+                                </div>
+                                <div class="flex-none w-32">
+                                    <img src="https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="New book" class="w-full h-40 object-cover rounded-lg" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                    <h4 class="text-sm font-medium text-text-primary mt-2">Sapiens</h4>
+                                    <p class="text-xs text-text-secondary">Yuval Noah Harari</p>
+                                </div>
+                                <div class="flex-none w-32">
+                                    <img src="https://images.pixabay.com/photo/2015/11/19/21/10/glasses-1052010_1280.jpg" alt="New book" class="w-full h-40 object-cover rounded-lg" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                    <h4 class="text-sm font-medium text-text-primary mt-2">Educated</h4>
+                                    <p class="text-xs text-text-secondary">Tara Westover</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Current Loans -->
+                    <div class="card">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-heading font-semibold text-text-primary">Current Loans</h3>
+                            <a href="loan_request_processing.html" class="text-primary-600 hover:text-primary-700 text-sm font-medium transition-colors">View All</a>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4 p-4 bg-secondary-50 rounded-lg">
+                                <img src="https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Book cover" class="w-12 h-16 object-cover rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-text-primary">The Great Gatsby</h4>
+                                    <p class="text-sm text-text-secondary">F. Scott Fitzgerald</p>
+                                    <p class="text-xs text-warning-600 font-medium mt-1">Due: Jan 15, 2025</p>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="text-xs bg-accent-600 text-white px-3 py-1 rounded-md hover:bg-accent-700 transition-colors">Renew</button>
+                                    <button class="text-xs bg-success-600 text-white px-3 py-1 rounded-md hover:bg-success-700 transition-colors">Return</button>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4 p-4 bg-secondary-50 rounded-lg">
+                                <img src="https://images.pixabay.com/photo/2015/11/19/21/10/glasses-1052010_1280.jpg" alt="Book cover" class="w-12 h-16 object-cover rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-text-primary">To Kill a Mockingbird</h4>
+                                    <p class="text-sm text-text-secondary">Harper Lee</p>
+                                    <p class="text-xs text-success-600 font-medium mt-1">Due: Jan 18, 2025</p>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="text-xs bg-accent-600 text-white px-3 py-1 rounded-md hover:bg-accent-700 transition-colors">Renew</button>
+                                    <button class="text-xs bg-success-600 text-white px-3 py-1 rounded-md hover:bg-success-700 transition-colors">Return</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar - Activity & Notifications -->
+            <div class="lg:col-span-1">
+                <div class="space-y-6">
+                    <!-- Loan Activity Timeline -->
+                    <div class="card">
+                        <h3 class="text-lg font-heading font-semibold text-text-primary mb-4">Recent Activity</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-success-500 rounded-full mt-2"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-text-primary">Book returned successfully</p>
+                                    <p class="text-xs text-text-secondary">The Catcher in the Rye • 2 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-primary-500 rounded-full mt-2"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-text-primary">Loan request approved</p>
+                                    <p class="text-xs text-text-secondary">1984 • Yesterday</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-warning-500 rounded-full mt-2"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-text-primary">Due date reminder</p>
+                                    <p class="text-xs text-text-secondary">The Great Gatsby • 2 days ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification Center -->
+                    <div class="card">
+                        <h3 class="text-lg font-heading font-semibold text-text-primary mb-4">Notifications</h3>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-warning-50 border border-warning-200 rounded-lg">
+                                <div class="flex items-start space-x-2">
+                                    <svg class="w-4 h-4 text-warning-600 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm font-medium text-warning-800">Due Date Reminder</p>
+                                        <p class="text-xs text-warning-700">The Great Gatsby is due in 2 days</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-success-50 border border-success-200 rounded-lg">
+                                <div class="flex items-start space-x-2">
+                                    <svg class="w-4 h-4 text-success-600 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm font-medium text-success-800">Request Approved</p>
+                                        <p class="text-xs text-success-700">Your request for "1984" has been approved</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Popular Books -->
+                    <div class="card">
+                        <h3 class="text-lg font-heading font-semibold text-text-primary mb-4">Popular This Week</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-lg font-bold text-primary-600">1</span>
+                                <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Popular book" class="w-8 h-10 object-cover rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-text-primary truncate">Atomic Habits</p>
+                                    <p class="text-xs text-text-secondary">James Clear</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-lg font-bold text-secondary-400">2</span>
+                                <img src="https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Popular book" class="w-8 h-10 object-cover rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-text-primary truncate">The Psychology of Money</p>
+                                    <p class="text-xs text-text-secondary">Morgan Housel</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-lg font-bold text-secondary-400">3</span>
+                                <img src="https://images.pixabay.com/photo/2016/11/29/05/45/astronomy-1867616_1280.jpg" alt="Popular book" class="w-8 h-10 object-cover rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-text-primary truncate">Dune</p>
+                                    <p class="text-xs text-text-secondary">Frank Herbert</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-secondary-200 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-sm text-text-secondary">© 2025 Library Management System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Get current user from localStorage
+        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        
+        // Update user name in UI
+        if (currentUser.name) {
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('welcomeName').textContent = currentUser.name.split(' ')[0];
+        }
+
+        // Profile dropdown functionality
+        const profileDropdown = document.getElementById('profileDropdown');
+        const profileMenu = document.getElementById('profileMenu');
+
+        profileDropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+            profileMenu.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function() {
+            profileMenu.classList.add('hidden');
+        });
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login_screen.html';
+        });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const carousel = document.getElementById('carousel');
+        const slides = carousel.children;
+        const totalSlides = slides.length;
+        const slideWidth = 144; // 128px + 16px gap
+
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            if (currentSlide < totalSlides - 3) {
+                currentSlide++;
+                carousel.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+            }
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', function() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                carousel.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+            }
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('globalSearch');
+        let searchTimeout;
+
+        searchInput.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                const query = this.value.trim();
+                if (query.length > 2) {
+                    // Simulate search suggestions
+                    console.log('Searching for:', query);
+                    // In a real app, this would make an API call
+                }
+            }, 300);
+        });
+
+        // Auto-refresh notifications (simulate real-time updates)
+        setInterval(() => {
+            // In a real app, this would fetch new notifications
+            console.log('Checking for new notifications...');
+        }, 30000);
+
+        // Check authentication
+        if (!currentUser.email || currentUser.role !== 'member') {
+            window.location.href = 'login_screen.html';
+        }
+
+        // Initialize tooltips and micro-interactions
+        document.querySelectorAll('[title]').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.classList.add('scale-102');
+            });
+            element.addEventListener('mouseleave', function() {
+                this.classList.remove('scale-102');
+            });
+        });
+
+        // Simulate real-time data updates
+        function updateStats() {
+            // In a real app, this would fetch current stats from the server
+            const stats = {
+                currentLoans: Math.floor(Math.random() * 5) + 1,
+                availableSlots: 5 - (Math.floor(Math.random() * 5) + 1),
+                accountStatus: 'Active'
+            };
+            
+            // Update UI with new stats if needed
+            console.log('Updated stats:', stats);
+        }
+
+        // Update stats every 5 minutes
+        setInterval(updateStats, 300000);
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

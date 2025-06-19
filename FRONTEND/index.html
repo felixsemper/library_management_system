@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: linear-gradient(135deg, #2563EB 0%, #0891B2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        
+        .welcome-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 3rem;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #2563EB, #0891B2);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        
+        h1 {
+            font-family: 'Inter', sans-serif;
+            color: #1E293B;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            color: #64748B;
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .redirect-info {
+            background: #EFF6FF;
+            border: 1px solid #DBEAFE;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            color: #1D4ED8;
+            font-size: 0.875rem;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #DBEAFE;
+            border-radius: 50%;
+            border-top-color: #2563EB;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 0.5rem;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .page-list {
+            text-align: left;
+            background: #FAFAF9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .page-list h3 {
+            font-family: 'Inter', sans-serif;
+            color: #1E293B;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .page-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .page-list li {
+            padding: 0.5rem 0;
+            color: #64748B;
+            font-size: 0.875rem;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        
+        .page-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .page-list li::before {
+            content: "→";
+            color: #0891B2;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+    </style>
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Flibraryma5192back.builtwithrocket.new&_v=0.1.2"></script>
+</head>
+<body>
+    <div class="welcome-container">
+        <div class="logo">LMS</div>
+        <h1>Library Management System</h1>
+        <p>Welcome to your comprehensive library management solution</p>
+        
+        <div class="redirect-info">
+            <div class="loading-spinner"></div>
+            Redirecting to login screen in <span id="countdown">3</span> seconds...
+        </div>
+        
+        <div class="page-list">
+            <h3>Available Pages:</h3>
+            <ul>
+                <li>Login Screen</li>
+                <li>Admin Dashboard</li>
+                <li>Member Dashboard</li>
+                <li>Book Catalog Management</li>
+                <li>Member Account Management</li>
+                <li>Loan Request Processing</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Countdown and redirect functionality
+        let countdown = 3;
+        const countdownElement = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+                clearInterval(timer);
+                // Redirect to login screen
+                window.location.href = 'pages/login_screen.html';
+            }
+        }, 1000);
+        
+        // Allow immediate redirect on click
+        document.addEventListener('click', () => {
+            clearInterval(timer);
+            window.location.href = 'pages/login_screen.html';
+        });
+        
+        // Preload fonts
+        const fontLinks = [
+            'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap',
+            'https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;500&display=swap',
+            'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap'
+        ];
+        
+        fontLinks.forEach(href => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'style';
+            link.href = href;
+            document.head.appendChild(link);
+            
+            const styleLink = document.createElement('link');
+            styleLink.rel = 'stylesheet';
+            styleLink.href = href;
+            document.head.appendChild(styleLink);
+        });
+    </script>
+<script id="dhws-dataInjector" src="/public/dhws-data-injector.js"></script>
+</body>
+</html>
